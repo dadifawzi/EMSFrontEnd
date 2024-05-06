@@ -1,0 +1,64 @@
+<div class="content">
+  <div class="customer-container">
+    <!-- search box -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <form>
+        <div class="input-group">
+          <input (ngModelChange)="searchCustomers2()" [(ngModel)]="searchQuery" type="search" [ngModelOptions]="{standalone: true}" type="text" class="form-control mr-sm-2" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+          <button (click)="searchCustomers()" class="btn btn-primary" type="submit" id="button-addon2">Search</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-4">
+      <button routerLink="/ems/client/add" class="btn btn-success">Create</button>
+    </div>
+  </div>
+</div>
+
+    <!-- Table to display customers -->
+    <div class="table-container " style="margin-top: 3%; margin-right: 5%;">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>email</th>
+            <th>phone</th>
+            <th>adress</th>
+            <th>distance</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (client of clients; track client._id ) {
+
+          <tr>
+            <td>
+              <img
+                src="http://localhost:3000/storage/{{ client.image }}"
+                alt=""
+                class="round-image"
+              />
+            </td>
+            <td>{{ client.fullname }}</td>
+            <td>{{ client.email }}</td>
+            <td>{{ client.tel }}</td>
+            <td>{{ client.adress }}</td>
+            <td>{{ client.distance }}</td>
+            <td>
+              <i
+                (click)="deleteClient(client._id)"
+                class="bi mx-2 bi-trash-fill"
+              ></i>
+              <i [routerLink]="['/ems/client/update/', client._id]"
+               class="bi mx-2 bi-pencil-fill"></i>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,246 @@
+<div class="content">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-2">
+      <div class="card">
+        <div class="card-body">
+          <div style="text-align: left">
+            <fa-icon [icon]="faCar" size="2xl" class="text-warning"></fa-icon>
+          </div>
+          <h5 class="card-title">Taxi</h5>
+          <p class="card-text">Amount: ${{ getTaxiExpenseTotal() }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="card">
+        <div class="card-body">
+          <div style="text-align: left">
+            <fa-icon
+              [icon]="faUtensils"
+              size="2xl"
+              class="text-danger"
+            ></fa-icon>
+          </div>
+          <h5 class="card-title">Restaurant</h5>
+          <p class="card-text">Amount: ${{ getFoodExpenseTotal() }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="card">
+        <div class="card-body">
+          <div style="text-align: left">
+            <fa-icon [icon]="faHotel" size="2xl" class="text-primary"></fa-icon>
+          </div>
+          <h5 class="card-title">Hotel</h5>
+          <p class="card-text">Amount: ${{ getHotelExpenseTotal() }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="card">
+        <div class="card-body">
+          <div style="text-align: left">
+            <fa-icon
+              [icon]="faGasPump"
+              size="2xl"
+              class="text-secondary"
+            ></fa-icon>
+          </div>
+          <h5 class="card-title">Fuel</h5>
+          <p class="card-text">Amount: ${{ getFuelExpenseTotal() }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="card">
+        <div class="card-body">
+          <div style="text-align: left">
+            <fa-icon [icon]="faCar" size="2xl" class="text-success"></fa-icon>
+          </div>
+          <h5 class="card-title">Rent car</h5>
+          <p class="card-text">Amount: ${{ getRentExpenseTotal() }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="card">
+        <div class="card-body">
+          <div style="text-align: left">
+            <fa-icon [icon]="faTools" size="2xl"></fa-icon>
+          </div>
+          <h5 class="card-title">Others</h5>
+          <p class="card-text">Amount: ${{ getOtherExpenseTotal() }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-group gap-3">
+    <!-- <div class="dropdown">
+      <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Months
+      </button>
+      <ul class="dropdown-menu">
+        <li *ngFor="let m of month">
+          <a class="dropdown-item" href="#" (click)="onSelectMonth(m) ">{{ m }}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        User
+      </button>
+      <ul class="dropdown-menu">
+        <li *ngFor="let u of users">
+          <a class="dropdown-item" href="#" (click)="onSelectUser(u) ">{{ u.username }}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Type
+      </button>
+      <ul class="dropdown-menu">
+        <li *ngFor="let t of types">
+          <a class="dropdown-item" href="#" (click)="onSelectType(t) ">{{ t.name }}</a>
+        </li>
+      </ul>
+    </div> -->
+
+    <div class="divider-vertical"></div>
+    <div class="dropdown-group">
+      <!-- <div class="btn-group">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          Filter
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <label class="form-check-label checkbox-label ">
+              <input type="radio" name="filterradio" class="form-check-input" (click)="onSelectAll()">All
+            </label>
+            <label class="form-check-label checkbox-label">
+              <input type="radio" name="filterradio" class="form-check-input" (click)="onSelectNotValid()">Non-Validated
+            </label>
+  
+            <label class="form-check-label checkbox-label">
+              <input type="radio" name="filterradio"  class="form-check-input" (click)="onSelectNotLocked()">Non-Locked
+            </label>
+  
+          </li>
+        </ul>
+      </div> -->
+    </div>
+    <input
+      class="search-box form-control btn-outline-success"
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Search..."
+    />
+    <div style="width: 200px">
+      <button
+        (click)="add()"
+        style="width: 200px"
+        type="button"
+        class="btn btn-success"
+      >
+        Add Expense
+      </button>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Mission</th>
+          <!-- <th (click)="sortTable('mission_title')">Mission</th> -->
+          <th>Date</th>
+          <th>Client</th>
+          <th>Expense</th>
+          <th>Type</th>
+          <th>Action</th>
+          <th>Report</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (expense of homeData; track expense._id) { @for (e of
+        expense.expenses; track e._id ; let i = $index) {
+
+        <tr id="expense-details">
+          @if ( i == 0 ) {
+          <td [attr.rowspan]="expense.expenses.length">
+            <i class="bi bi-zoom-in"></i>
+          </td>
+          <td [attr.rowspan]="expense.expenses.length">
+            {{ expense.user.fullname }}
+          </td>
+
+          <td [attr.rowspan]="expense.expenses.length">
+            {{ expense.missionTitle }}
+          </td>
+
+          <td [attr.rowspan]="expense.expenses.length">
+            {{ expense.date | date : "yyyy/MM/dd" }}
+          </td>
+          }
+
+          <td>{{ e.customer.fullname }}</td>
+          <td>{{ e.amount | currency : "USD" : "symbol" : "1.2-2" }}</td>
+          <td>{{ e.expenseType.name }}</td>
+
+          @if( i == 0){
+          <td [attr.rowspan]="expense.expenses.length">
+            <!-- First icon Validate Expense  -->
+            <i (click)="validateExpense(expense,expense._id)"
+              [ngClass]="{
+                'bi bi-check-circle': !expense.validated,
+                'bi bi-check-circle-fill': expense.validated
+              }"
+              [ngStyle]="{
+                color: expense.validated ? 'primary' : 'text-primary',
+                'margin-right': '10px'
+              }"
+            ></i>
+
+            <!-- Second icon lockExpense -->
+            <i (click)="lockExpense(expense,expense._id)"
+              [ngClass]="{
+                'bi bi-lock':!expense.locked,
+                'bi bi-lock-fill':expense.locked
+              }"
+              [ngStyle]="{
+                color: expense.locked ? 'primary' : 'text-primary',
+                'margin-right': '10px'
+              }"
+            ></i>
+
+            <i
+             [ngClass]="{
+'bi bi-pencil-square text-muted ml-2':   expense.locked , 
+'bi bi-pencil-square text-primary ml-2': ! (expense.locked )   }"
+              style="margin-right: 10px"
+            ></i>
+
+            <i
+            (click)="deleteExpense(expense,expense.user._id)"
+              [ngClass]="{
+'bi bi-trash text-muted ml-2':expense.locked , 
+'bi bi-trash text-danger ml-2' : !expense.locked  }"
+              
+            ></i>
+          </td>
+
+          <td [attr.rowspan]="expense.expenses.length">
+            <fa-icon [icon]="faPrint" size="1x" class="text-primary"></fa-icon>
+          </td>
+
+          }
+        </tr>
+        } }
+      </tbody>
+    </table>
+  </div>
+</div>

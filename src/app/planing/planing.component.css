@@ -1,0 +1,12 @@
+.calendar {
+    width: 100%;
+    max-width: 900px; /* Adjust based on your preference */
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    font-family: Arial, sans-serif;
+}
+
+.swal2-textarea {
+  padding: 10px;
+  height: 100px; /* Set height to ensure enough space for typing longer texts */
+}

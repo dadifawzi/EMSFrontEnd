@@ -1,0 +1,124 @@
+<div class="row">
+    <div class="col-1"></div>
+    <!-- Form to add new customer -->
+    <div class="col-8 mt-100">
+      <form [formGroup]="userForm" (ngSubmit)="create()">
+        <H2>Add New User</H2>
+        <span></span>
+
+
+        <div class="form-group row mb-2">
+          <label for="name" class="col-2 col-form-label">Name</label>
+         
+         <div class="col-8">
+<input  formControlName="fullname"
+            type="text"
+            required
+            class="form-control"
+            id="fullname"
+            placeholder="Enter Name"
+          />
+         </div> 
+            @if(userForm.controls['fullname'].touched && userForm.controls['fullname'].invalid){
+                                  <p class="text-danger">invalid name</p>
+                              }
+        </div>
+        <div class="form-group row mb-2">
+          <label for="email" class="col-2 col-form-label">Email</label>
+          <div class="col-8">
+              <input formControlName="email"
+            type="text"
+            required
+            class="form-control"
+            id="email"
+            placeholder="Enter Email"
+          />
+          </div>
+        
+  @if(userForm.controls['email'].touched && userForm.controls['email'].invalid){
+                                  <p class="text-danger">invalid email</p>
+                              }
+        </div>
+        <div class=" form-group row  mb-2">
+          <label for="password" class="col-2 col-form-label">Password</label>
+          <div class="col-8">
+          <input formControlName="password"
+            type="text"
+            required
+            class="form-control"
+            id="password"
+            placeholder="Enter password "
+          />
+          </div>
+          @if(userForm.controls['password'].touched && userForm.controls['password'].invalid){
+                                  <p class="text-danger">invalid password</p>
+                              }
+        </div>
+        <div class=" form-group row  mb-2">
+          <label for="tel" class="col-2 col-form-label">Phone</label>
+          <div class="col-8">
+          <input formControlName="tel"
+            type="text"
+            required
+            class="form-control"
+            id="tel"
+            placeholder="Enter phone number"
+          />
+          </div>
+          @if(userForm.controls['tel'].touched && userForm.controls['tel'].invalid){
+                                  <p class="text-danger">invalid phone number</p>
+                              }
+        </div>
+       <div class=" form-group row  mb-2">
+          <label for="distance" class=" col-2  col-form-label">Role</label>
+          <div class="col-8">
+          <select formControlName="role" class="form-control m-2" >
+                                <option value="user">User</option>
+                                <option value="backoffice">BackOffice</option>
+                                <option value="admin">Admin</option>
+                            </select>
+
+                            @if(userForm.controls['role'].touched && userForm.controls['role'].invalid){
+                                <p class="text-danger"> invalid Role </p>
+                            }
+          </div>
+        </div>
+
+         <div class=" form-group row  mb-2">
+            <label for="distance" class="col-2  col-form-label">Tag</label>
+            <div class="col-8">
+          <input formControlName="tag"
+            type="text"
+            required
+            class="form-control"
+            id="tag"
+            placeholder="Enter Tag "
+          /></div>
+          @if(userForm.controls['tag'].touched && userForm.controls['tag'].invalid){
+                                  <p class="text-danger">invalid tag</p>
+                              }
+        </div>
+
+
+
+        <div class=" form-group row  mb-2">
+          <label for="city" class="col-2  col-form-label">Image</label>
+          <div class="col-8">
+          <div class="input-group">
+            <input (change)="selectImage($event)"
+              type="file"
+              required
+              class="form-control"
+              id="image"
+            />
+            <label class="input-group-text" for="city">Upload</label>
+          </div>
+          </div>
+        </div>
+  
+        <button type="submit" class="btn btn-primary">Add User</button>
+      </form>
+    </div>
+          
+  </div>
+  

@@ -1,0 +1,86 @@
+<div class="row">
+
+@defer () {
+  
+
+  <div class="container" style="margin-left: 2%;">
+ 
+    <h2>Add New Expense</h2>
+    <form class="border p-3 col-6 " style="margin-bottom: 5%;">
+      <div class="form-group ">
+        <label for="missionTitle">Mission Title</label>
+        <input   [(ngModel)]="expense.missionTitle" style="margin-left: 2%;" type="text" class="form-control -" id="missionTitle"  name="missionTitle">
+      </div>
+      <div class="form-group ">
+        <label for="selectUser">Select Person</label>
+        <select  [(ngModel)]="expense.user" style="margin-left: 2%;" class="form-control" id="selectUser"name="missionUser">
+       
+          @for (user of users; track user._id) {
+                     <option [ngValue]="user._id" >{{user.fullname}}</option>
+         }
+      
+        </select>
+
+      </div>
+      <div class="form-group ">
+        <label for="expenseDate">Date</label>
+        <input  [(ngModel)]="expense.date" style="margin-left: 2%;" type="date" class="form-control" id="expenseDate"  name="missionDate">
+      </div>
+      <div class="form-group ">
+        <label for="expenseComment">Comment</label>
+        <textarea [(ngModel)]="expense.comment" style="margin-left: 2%;" class="form-control" id="expenseComment" rows="3"  name="missionComment"></textarea>
+      </div>
+
+      @for (i of expenseNumber; track i ) {
+        
+      
+      <div     > 
+      <fieldset class="form-group border p-3 " style="margin-top: 10px ; margin-left: 2%; background-color: rgb(241, 242, 243);">
+        <legend class="w-auto px-2" >Expense {{i}}</legend>
+        <div class="form-group">
+          <label for="selectedCustomer">Select Customer</label>
+
+          <select [(ngModel)]="customer[i]" style="margin-left: 2%;" class="form-control" id="selectedCustomer" name="missionCustomer">
+           @for (c of customers; track c._id ; let j = $index) {
+                         <option [ngValue]="customers[j]" >{{c.fullname}}</option>
+
+           }
+         
+          </select>
+
+        </div>
+        <div class="form-group">
+          <label for="selectUser">Select Expense Type</label>
+          <select [(ngModel)]="type[i]" style="margin-left: 2%;" class="form-control" id="selectedExpenseType"  name="missionExpenseType">
+           @for (type of types; track type._id ; let k = $index) {
+                         <option [ngValue]="types[k]"  >{{type.name}}</option>
+
+           }
+          
+          </select>
+        </div>
+      <div class="form-group">
+        <label for="expenseComment">Amount</label>
+        <input [(ngModel)]="ammount[i]" style="margin-left: 2%;"  type="number" class="form-control" id="expenseAmount" rows="3"name="missionExpenseAmount" />
+      </div>
+      <div class="form-group">
+        <label for="expenseComment">Comments</label>
+        <textarea [(ngModel)]="comment[i]" style="margin-left: 2%;" class="form-control" id="expenseComment2" rows="3"  name="missionExpenseComment"></textarea>
+      </div>
+      </fieldset>
+      </div>
+
+    }
+
+
+      <div style="margin-top: 20px;">
+  <button type="submit" class="btn btn-success" style="margin-right: 20px"(click)="increment(1)">add more </button>
+      <button type="submit" class="btn btn-danger" style="margin-right: 20px" (click)="increment(-1)">delete  </button>
+      <button type="submit" class="btn btn-primary" (click)="addExpense2()">Save Expense</button>
+    
+
+      </div>
+    </form>
+  </div>
+}
+</div>

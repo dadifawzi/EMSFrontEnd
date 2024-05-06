@@ -1,0 +1,72 @@
+.btn{
+  height:40px ;
+}
+
+
+
+
+
+.search-box{
+    height: 40px;
+    margin-left: 40px;
+  }
+  .content {
+    margin-right: 20px ;
+    padding: 20px;
+  }
+  .card {
+    width: 10rem;
+    margin-bottom: 20px;
+    margin-left: 10px;
+	    background-color: #fff;
+      border-radius: 10px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .card:hover{
+    background-color: rgb(228, 228, 224);
+  }
+
+
+  .table {
+    margin-top: 20px;
+  }
+  
+  .table-container {
+    max-height: 500px; /* Adjust the desired height */
+    overflow-y: auto;
+  }
+  
+  .dropdown-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  th {
+    cursor: pointer;
+  }
+  .divider-vertical {
+    border-right: 1px solid #dee2e6; /* Adjust color and thickness as needed */
+    height: 2rem; /* Adjust height as needed */
+    margin: 0 1rem; /* Adjust margin as needed */
+  }
+  
+  .checkbox-label {
+    margin-left: 1rem; /* Adjust margin as needed */
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

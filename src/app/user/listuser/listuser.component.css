@@ -1,0 +1,75 @@
+
+.bi{
+    font-size: 20px;
+}
+
+.bi:hover{
+  font-size: 23px;
+  color: rgb(10, 96, 153);
+}
+
+.header{
+	margin-top: 3%;
+	margin-left: 2%;
+}
+.page-title{
+	color: #494a4b;
+}
+.cardbody{
+	margin-bottom: 10px;
+}
+
+.cardfooter{
+	background-color:#9dccc6  !important;
+}
+
+.card{
+	background-color: #fff;
+	width: 250px;
+    height: 260px;
+	border-radius: 33px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	padding: 2rem ;
+}
+.card:hover{
+	background-color: #cfdde2;
+}
+
+.top{
+	display: flex;	
+}
+.profile-image{
+	border-radius: 100px;
+    align-items: center;
+	border: 2px solid #5957f9;
+}
+
+.profile-image:hover{
+    width: 70px;
+}
+
+.name{
+	font-size: 15px;
+	font-weight: bold;
+	color: #272727;
+	position: relative;
+	top: 8px;
+}
+
+.name:hover{
+    font-size: 16px;
+    font-weight: blod;
+    color: rgb(30, 72, 128);
+}
+
+.info{
+	font-size: 12px;
+	font-weight: 700;
+	color: #272727;
+
+}
+.info:hover{
+	border-bottom: 1px solid #dee2e6!important;
+    font-weight: bolde;
+    font-size:14px;
+}

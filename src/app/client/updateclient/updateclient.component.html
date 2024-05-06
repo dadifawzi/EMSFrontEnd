@@ -1,0 +1,91 @@
+<div class="row">
+    <div class="col-1"></div>
+    <!-- Form to add new customer -->
+    <div class="col-6 mt-200">
+      <form [formGroup]="clientForm" (ngSubmit)="update()">
+        <H2>Update Customer</H2>
+        <span></span>
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input formControlName="fullname"
+            type="text"
+            required
+            class="form-control"
+            id="fullname"
+            placeholder="Enter Name"
+          />
+            @if(clientForm.controls['fullname'].touched && clientForm.controls['fullname'].invalid){
+                                  <p class="text-danger">invalid name</p>
+                              }
+        </div>
+        <div class="mb-3">
+          <label for="city" class="form-label">Email</label>
+          <input formControlName="email"
+            type="text"
+            required
+            class="form-control"
+            id="email"
+            placeholder="Enter Email"
+          />
+  @if(clientForm.controls['email'].touched && clientForm.controls['email'].invalid){
+                                  <p class="text-danger">invalid email</p>
+                              }
+        </div>
+        <div class="mb-3">
+          <label for="city" class="form-label">Phone</label>
+          <input formControlName="tel"
+            type="text"
+            required
+            class="form-control"
+            id="tel"
+            placeholder="Enter Phone "
+          />
+          @if(clientForm.controls['tel'].touched && clientForm.controls['tel'].invalid){
+                                  <p class="text-danger">invalid name</p>
+                              }
+        </div>
+        <div class="mb-3">
+          <label for="city" class="form-label">City</label>
+          <input formControlName="adress"
+            type="text"
+            required
+            class="form-control"
+            id="adress"
+            placeholder="Enter City"
+          />
+          @if(clientForm.controls['adress'].touched && clientForm.controls['adress'].invalid){
+                                  <p class="text-danger">invalid adress</p>
+                              }
+        </div>
+        <div class="mb-3">
+          <label for="distance" class="form-label">Distance</label>
+          <input formControlName="distance"
+            type="number"
+            required
+            class="form-control"
+            id="distance"
+            placeholder="Enter Distance Km "
+          />
+          @if(clientForm.controls['distance'].touched && clientForm.controls['distance'].invalid){
+                                  <p class="text-danger">invalid distance</p>
+                              }
+        </div>
+        <div class="mb-3">
+          <label for="city" class="form-label">Image</label>
+          <div class="input-group">
+            <input (change)="selectImage($event)"
+              type="file"
+              required
+              class="form-control"
+              id="image"
+            />
+            <label class="input-group-text" for="city">Upload</label>
+          </div>
+        </div>
+  
+        <button type="submit" class="btn btn-primary">update Customer</button>
+      </form>
+    </div>
+          
+  </div>
+  

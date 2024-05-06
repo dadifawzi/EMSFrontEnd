@@ -1,0 +1,39 @@
+<div class="sidebar col-2">
+  <a routerLink="/ems/home" class="d-flex align-items-center link-dark text-decoration-none" style="margin-top: 10px;margin-bottom: 20px">
+    <div class="logo">
+      <img src="assets/logo.png" alt="Logo">
+    </div>
+    <!--<span class="fs-4">Quark </span>-->
+  </a>
+
+  <ul class="nav flex-column sidebar-list">
+   <li class="nav-item">
+  <a routerLink="/ems/dashboard" class="nav-link active" aria-current="page">
+    <fa-icon [icon]="faHome" class="fa-icon"></fa-icon>
+    <span class="text">Home</span> <!-- Wrap the text in a span with class "text" -->
+  </a>
+</li>
+    <li class="nav-item">
+      <a routerLink="/ems/client" class="nav-link">
+        <fa-icon [icon]="faUsers"></fa-icon> <span class="text">Client</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/ems/user" class="nav-link">
+        <fa-icon [icon]="faUser"></fa-icon> <span class="text">Users</span>
+      </a>
+    </li>
+     <li class="nav-item">
+      <a routerLink="/ems/planing" class="nav-link">
+        <fa-icon [icon]="faCalendar"></fa-icon> <span class="text">Planing</span>
+      </a>
+    </li>
+  </ul>
+  <ul class="nav flex-column" style="margin-top: 20px">
+    <li class="nav-item">
+      <a  class="nav-link" (click)="logout()">
+        <fa-icon [icon]="faRightFromBracket"></fa-icon> Logout
+      </a>
+    </li>
+  </ul>
+</div>

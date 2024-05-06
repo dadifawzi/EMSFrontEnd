@@ -1,0 +1,35 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background-color: #f8f9fa;
+  }
+  .sidebar .nav-link {
+    color: #000;
+    font-size: 13px;
+  }
+.sidebar .nav-link:hover{
+  font-size: 15px;
+  font-weight: bold;
+  transition: font-size 0.2s ease-in-out;
+}
+
+  .logo {
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .logo img {
+    width: 80%; /* Adjust the width as needed */
+    height: auto;
+  }
+
+
+ .nav-item{
+  margin-bottom: 10px;
+ }
+
+ .text{
+  margin-left: 5px;
+ }

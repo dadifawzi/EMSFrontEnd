@@ -1,0 +1,64 @@
+<div class="header">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h2 class="page-title">Users List</h2>
+      </div>
+      <div class="col-4 d-flex justify-content-end">
+        <button
+          routerLink="/ems/user/add"
+          class="btn btn-success"
+          style="width: 200px"
+        >
+          Create
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container d-flex justify-content-left mt-5">
+  <div class="row">
+
+    <!--  FOR   -->
+
+    @for (user of users; track user._id) {
+    <div class="col-md-3 col-sm-5 mb-4 mr-10">
+      <div class="card">
+        <div class="top">
+          <img
+            src="http://localhost:3000/storage/{{ user.image }}"
+            class="img-fluid profile-image"
+            width="70"
+          />
+
+          <div class="ml-50">
+            <h5 class="name">{{ user.fullname }}</h5>
+          </div>
+        </div>
+
+        <div class="cardbody">
+          <div class="info mt-4">
+            <span>Email : {{ user.email }}</span>
+          </div>
+          <div class="info mt-2">
+            <span>phone : {{ user.tel }}</span>
+          </div>
+          <div class="info pt-2">
+            <span>tags : {{ user.tag }}</span>
+          </div>
+        </div>
+
+        <div class="card-footer bg-transparent d-flex justify-content-between">
+          <i (click)="delete(user._id)" class="bi bi-trash-fill mx-2"></i>
+          <i
+            [routerLink]="['/ems/user/update/', user._id]"
+            class="bi bi-pencil-fill mx-2"
+          ></i>
+        </div>
+      </div>
+    </div>
+
+    }
+  </div>
+</div>
