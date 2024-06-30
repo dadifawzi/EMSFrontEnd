@@ -8,7 +8,7 @@
         <button
           routerLink="/ems/user/add"
           class="btn btn-success"
-          style="width: 200px"
+          style="width: 200px"  [disabled]="role !== 'admin'"
         >
           Create
         </button>

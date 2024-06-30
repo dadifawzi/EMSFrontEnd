@@ -17,6 +17,11 @@ export class ExpenseserviceService {
     return this.http.get<Expense[]>(this.apiUrl+'/expense');
   }
 
+// fetch expenses by user 
+getAllExpenseByUserId(id:any) {
+  return this.http.get<Expense[]>(this.apiUrl+'/expense/user/'+id);
+}
+
   //fetch all types 
   getAllTypes(){
     return this.http.get(this.apiUrl+'/expense/types') ; 

@@ -33,7 +33,7 @@
             <fa-icon [icon]="faHotel" size="2xl" class="text-primary"></fa-icon>
           </div>
           <h5 class="card-title">Hotel</h5>
-          <p class="card-text">Amount: ${{ getHotelExpenseTotal() }}</p>
+          <p class="card-text">Amount: ${{ getHotelExpenseTotal()  }}</p>
         </div>
       </div>
     </div>
@@ -48,7 +48,7 @@
             ></fa-icon>
           </div>
           <h5 class="card-title">Fuel</h5>
-          <p class="card-text">Amount: ${{ getFuelExpenseTotal() }}</p>
+          <p class="card-text">Amount: ${{ getFuelExpenseTotal()}}</p>
         </div>
       </div>
     </div>
@@ -59,7 +59,7 @@
             <fa-icon [icon]="faCar" size="2xl" class="text-success"></fa-icon>
           </div>
           <h5 class="card-title">Rent car</h5>
-          <p class="card-text">Amount: ${{ getRentExpenseTotal() }}</p>
+          <p class="card-text">Amount: ${{ getRentExpenseTotal()    }}</p>
         </div>
       </div>
     </div>
@@ -70,7 +70,7 @@
             <fa-icon [icon]="faTools" size="2xl"></fa-icon>
           </div>
           <h5 class="card-title">Others</h5>
-          <p class="card-text">Amount: ${{ getOtherExpenseTotal() }}</p>
+          <p class="card-text">Amount: ${{ getOtherExpenseTotal()  }}</p>
         </div>
       </div>
     </div>
@@ -172,7 +172,7 @@
         <tr id="expense-details">
           @if ( i == 0 ) {
           <td [attr.rowspan]="expense.expenses.length">
-            <i class="bi bi-zoom-in"></i>
+            <i (click)="previewExpense(expense)" class="bi bi-zoom-in"></i>
           </td>
           <td [attr.rowspan]="expense.expenses.length">
             {{ expense.user.fullname }}
@@ -217,7 +217,7 @@
               }"
             ></i>
 
-            <i
+            <i 
              [ngClass]="{
 'bi bi-pencil-square text-muted ml-2':   expense.locked , 
 'bi bi-pencil-square text-primary ml-2': ! (expense.locked )   }"
@@ -234,7 +234,8 @@
           </td>
 
           <td [attr.rowspan]="expense.expenses.length">
-            <fa-icon [icon]="faPrint" size="1x" class="text-primary"></fa-icon>
+            <fa-icon (click)="generatePDF(expense)"
+            [icon]="faPrint" size="1x" class="text-primary"></fa-icon>
           </td>
 
           }

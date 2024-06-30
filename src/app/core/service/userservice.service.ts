@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +20,12 @@ return this.http.post(this.apiUrl+'/user/signin',data) ;
 
 }
 
-  getUsers(){
-    return this.http.get(this.apiUrl+'/user');
+  getUsers(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl+'/user');
   }
 
-  getUserById(userId: any){
-    return this.http.get(this.apiUrl+'/user/'+userId);
+  getUserById(id: any){
+    return this.http.get(this.apiUrl+'/user/'+id);
   }
 
   createUser(user: any){

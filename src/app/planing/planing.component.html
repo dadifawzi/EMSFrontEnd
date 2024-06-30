@@ -1,19 +1,35 @@
 <h1>planing</h1>
 
-<div class="calendar">
+<div class="row">
 
-
-    <div class='demo-app'>
-        <div class='demo-app-main'>
-          <full-calendar *ngIf='calendarVisible()'  [options]='calendarOptions()'>
-            <ng-template #eventContent let-arg>
-              <b>{{ arg.timeText }}</b>
-              <i>{{ arg.event.title }}</i>
-            </ng-template>
-          </full-calendar>
-        </div>
-      
-      </div>
-      
+  
+    <div class="user-photos">
+      <img src="../../assets/users.jpg" class="user-photo">
+      @for (user of users; track user._id) {
+      <img  src="http://localhost:3000/storage/{{ user.image }}"  class="user-photo">
+      }
+    </div>
 </div>
+
+
+
+
+<div class="calendar">
+  <div class='demo-app'>
+    <div class='demo-app-main'>
+      <full-calendar *ngIf='calendarVisible()'  [options]='calendarOptions()'>
+        <ng-template #eventContent let-arg>
+          <b>{{ arg.timeText }}</b>
+          <i>{{ arg.event.title }}</i>
+        </ng-template>
+      </full-calendar>
+    </div>
+  
+  </div>
+</div>
+
+
+    
+      
+
     

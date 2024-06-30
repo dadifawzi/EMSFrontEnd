@@ -12,21 +12,40 @@ import  Swal from 'sweetalert2' ;
 })
 export class ListuserComponent implements OnInit{
 
-users: any ; 
+ users: any[] = [];
+ role : any ; 
 constructor(private _user:UserserviceService){}
 
   ngOnInit(): void {
 this.getusers(); 
+this.role = localStorage.getItem('Role') ;
 
 }
 
 getusers(){
+
+let id = localStorage.getItem('ID') ; 
+let role = localStorage.getItem('Role') ; 
+console.log(role);
+
+if(role =='admin'){
+  console.log('this is an admin');
   this._user.getUsers().subscribe({
-next :(res)=>{
-  this.users = res ; 
-},error : (err)=>{console.log(err);
+    next :(res)=>{
+      this.users = res; 
+    },error : (err)=>{console.log(err);
+    }
+     } ) ; 
 }
- } ) ; 
+else{
+  this._user.getUserById(id).subscribe({
+    next :(res)=>{
+      this.users = [res] ; 
+    },error : (err)=>{console.log(err);
+    }
+     } ) ; 
+}
+
 
 
 }

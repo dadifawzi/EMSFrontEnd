@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpenseserviceService } from '../core/service/expenseservice.service';
-
+import { ExpenseReport } from '../core/service/expensereport.service';
 //up are new updates
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -18,6 +18,7 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
+import Swal from 'sweetalert2'
 
 //data model
 import { HomeData } from './model/HomeData';
@@ -38,6 +39,7 @@ import { an } from '@fullcalendar/core/internal-common';
   styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent implements OnInit {
+
   homeData:any;
   currentSortColumn ="date" ; 
 currentSortOrder = "asc" ; 
@@ -55,7 +57,8 @@ searchTerm ='' ;
     private _router: Router,
     private homeDataService: DashboardserviceService,
     private http: HttpClient,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private expenseReport:ExpenseReport
   ) {}
 
   ngOnInit(): void {
@@ -67,6 +70,19 @@ searchTerm ='' ;
 
   //get all expenses
   getExpenseData() {
+
+
+let role = localStorage.getItem('Role') ; 
+let id = localStorage.getItem('ID');
+if(role =='user'){
+  this._expense.getAllExpenseByUserId(id).subscribe({
+    next: (res) => {
+      console.log('expense we get from DB ' + res);
+      this.homeData = res ; 
+    },
+  });
+}
+else{
     this._expense.getAllExpenses().subscribe({
       next: (res) => {
         console.log('expense we get from DB ' + res);
@@ -75,25 +91,53 @@ searchTerm ='' ;
     });
   }
 
+  }
+
+  previewExpense(expense:any) {
+
+let preview = "Mission Title: " + expense.missionTitle + "\n" +
+  "Mission comment: " + expense.comment + "\n";
+
+expense.expenses.forEach((exp:any, index:any) => {
+  preview += "Expense " + (index + 1) + ":\n" +
+    "  Expense Type: " + exp.expenseType.name + "\n" +
+    "  Comment: " + exp.comment + "\n";
+});
+
+Swal.fire({
+  title: preview ,
+  icon: "question"
+});
+
+
+throw new Error('Method not implemented.');
+}
+
   add() {
     this._router.navigate(['ems/addexpense']);
   }
 
-  getFoodExpenseTotal(): number {
+  getFoodExpenseTotal(): number  {
     let amount = 0;
     // Calculate the sum of expense.amount for ExpenseType "Food"
+    try{
     this.homeData.forEach((expense :any) => {
       expense.expenses.forEach((e:any) => {
         if (e.expenseType.name == 'Restaurant') {
           amount +=e.amount;
         }
       });
-    });
+    });}
+    catch(e){
+
+    }
     return amount;
   }
-  getFuelExpenseTotal(): number {
+  getFuelExpenseTotal(): number  {
     // Calculate the sum of expense.amount for ExpenseType "Food"
     let amount = 0;
+
+    try{
     // Calculate the sum of expense.amount for ExpenseType "Food"
     this.homeData.forEach((expense:any) => {
       expense.expenses.forEach((e:any) => {
@@ -102,13 +146,18 @@ searchTerm ='' ;
         }
       });
     });
-
+}
+    catch(e){
+      
+    }
     return amount;
   }
 
-  getHotelExpenseTotal(): number {
+  getHotelExpenseTotal(): number  {
     // Calculate the sum of expense.amount for ExpenseType "Food"
     let amount = 0;
+
+    try{
     // Calculate the sum of expense.amount for ExpenseType "Food"
     this.homeData.forEach((expense:any) => {
       expense.expenses.forEach((e:any) => {
@@ -116,14 +165,18 @@ searchTerm ='' ;
           amount  +=e.amount;
         }
       });
-    });
+    });}
+    catch(e){
+      
+    }
 
     return amount;
   }
-  getTaxiExpenseTotal(): number {
+  getTaxiExpenseTotal(): number  {
     // Calculate the sum of expense.amount for ExpenseType "Food"
     let amount = 0;
     // Calculate the sum of expense.amount for ExpenseType "Food"
+    try{
     this.homeData.forEach((expense:any) => {
       expense.expenses.forEach((e:any) => {
         if (e.expenseType.name == 'Taxi') {
@@ -131,12 +184,17 @@ searchTerm ='' ;
         }
       });
     });
+  }catch(e){
 
-    return amount;
   }
-  getRentExpenseTotal(): number {
+
+    return amount || 0 ;
+  }
+  getRentExpenseTotal(): number  {
     // Calculate the sum of expense.amount for ExpenseType "Food"
     let amoun = 0;
+
+    try{
     // Calculate the sum of expense.amount for ExpenseType "Food"
     this.homeData.forEach((expense:any) => {
       expense.expenses.forEach((e:any) => {
@@ -144,13 +202,18 @@ searchTerm ='' ;
           amoun += e.amount;
         }
       });
-    });
+    });}
+    catch(e){
+      
+    }
 
     return amoun;
   }
-  getOtherExpenseTotal(): number {
+  getOtherExpenseTotal(): number  {
     // Calculate the sum of expense.amount for ExpenseType "Food"
     let amoun = 0;
+
+    try{
     // Calculate the sum of expense.amount for ExpenseType "Food"
     this.homeData.forEach((expense:any) => {
       expense.expenses.forEach((e:any) => {
@@ -158,10 +221,15 @@ searchTerm ='' ;
           amoun += e.amount ;
         }
       });
-    });
+    });}
+    catch(e){
+      
+    }
 
-    return amoun;
+    return amoun || 0;
   }
+
+
 
   // delete expense 
   deleteExpense(expense:any , id: any) {
@@ -229,6 +297,17 @@ if(userid == expense.user._id){
    
       
     }
+
+//print report
+generatePDF(expense:any){
+  this.expenseReport.generateExpenseReportPDF(expense);
+}
+
+
+
+
+//TODO update expense in dashboard
+//TODO search function 
 
 
 
@@ -474,3 +553,5 @@ if(userid == expense.user._id){
   //   }
   //}
 }
+
+
